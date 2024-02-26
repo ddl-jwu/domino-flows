@@ -16,7 +16,7 @@ data _null_;
     input file_contents;
 run;
 
-libname data &file_contents;
+libname data "&file_contents.";
 
 data outputs.adsl;
     set data.tv;
