@@ -7,6 +7,7 @@ from flytekit.types.directory import FlyteDirectory
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
 project_name=os.environ.get('DOMINO_PROJECT_NAME')
+CommitId="418feff0c0226f2b74af6edf64cbb574833d7fd5" # DFS artifacts git commit
 
 # Define the job for creating ADSL dataset
 adsl_job_config = DominoJobConfig(
@@ -14,7 +15,8 @@ adsl_job_config = DominoJobConfig(
     ProjectName=project_name,
     ApiKey=api_key,
     Command="prod/adsl.sas",
-    EnvironmentId="65cd54180df82f018c4fb7cf"
+    EnvironmentId="65cd54180df82f018c4fb7cf",
+    CommitId=CommitId
 )
 
 adsl_job = DominoJobTask(
@@ -30,7 +32,8 @@ adae_job_config = DominoJobConfig(
     ProjectName=project_name,
     ApiKey=api_key,
     Command="prod/adae.sas",
-    EnvironmentId="65cd54180df82f018c4fb7cf"
+    EnvironmentId="65cd54180df82f018c4fb7cf",
+    CommitId=CommitId
 )
 
 adae_job = DominoJobTask(
@@ -46,7 +49,8 @@ advs_job_config = DominoJobConfig(
     ProjectName=project_name,
     ApiKey=api_key,
     Command="prod/advs.sas",
-    EnvironmentId="65cd54180df82f018c4fb7cf"
+    EnvironmentId="65cd54180df82f018c4fb7cf",
+    CommitId=CommitId
 )
 
 advs_job = DominoJobTask(
@@ -62,7 +66,8 @@ t_ae_rel_job_config = DominoJobConfig(
     ProjectName=project_name,
     ApiKey=api_key,
     Command="prod/t_ae_rel.sas",
-    EnvironmentId="65cd54180df82f018c4fb7cf"
+    EnvironmentId="65cd54180df82f018c4fb7cf",
+    CommitId=CommitId
 )
 
 t_ae_rel_job = DominoJobTask(
@@ -78,7 +83,8 @@ t_vscat_job_config = DominoJobConfig(
     ProjectName=project_name,
     ApiKey=api_key,
     Command="prod/t_vscat.sas",
-    EnvironmentId="65cd54180df82f018c4fb7cf"
+    EnvironmentId="65cd54180df82f018c4fb7cf",
+    CommitId=CommitId
 )
 
 t_vscat_job = DominoJobTask(
@@ -98,7 +104,6 @@ If you want to change the input data, replace the sdtm_tv_file, sdtm_ts_file, sd
 """
 @workflow
 def sas_workflow(sdtm_tv_file: FlyteFile, sdtm_ts_file: FlyteFile, sdtm_ta_file: FlyteFile) -> (FlyteFile, FlyteFile):
-    print(sdtm_tv_file)
     adsl_dataset = adsl_job(**{"tv.sas7bdat": sdtm_tv_file})
     adae_dataset = adae_job(**{"ts.sas7bdat": sdtm_ts_file, "adsl.sas7bdat": adsl_dataset})
     advs_dataset = advs_job(**{"ta.sas7bdat": sdtm_ta_file, "adsl.sas7bdat": adsl_dataset})

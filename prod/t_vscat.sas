@@ -8,22 +8,13 @@ options dlcreatedir;
 libname inputs "/workflow/inputs";
 libname outputs "/workflow/outputs";
 
-ods pdf file=outputs.report;
+ods pdf file="/workflow/outputs/report.pdf";
+title "T_VSCAT Report";
 
-proc print data=inputs.advs;
-run;
+/* proc report data=inputs.adae;  */
+/*     title 'T_AE_REL Report' tsparmcs=100; */
+/* run;  */
 
 ods pdf close;
 
 libname success "/workflow/outputs/_SUCCESS";
-
-/* %include "/mnt/code/domino.sas"; */
-/*  */
-/* options dlcreatedir; */
-/* libname inputs "/workflow/inputs"; */
-/* libname outputs "/workflow/outputs"; */
-/*  */
-/* proc print data=inputs.advs(obs=5); */
-/* run; */
-/*  */
-/* libname success "/workflow/outputs/_SUCCESS"; */
