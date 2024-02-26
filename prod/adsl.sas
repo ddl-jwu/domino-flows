@@ -16,10 +16,10 @@ data _null_;
     input file_contents;
 run;
 
-libname data "&file_contents";
+libname data &file_contents;
 
 data outputs.adsl;
-    set inputs.tv;
+    set data.tv;
 run;
 
 /* (Required) This line signals to Domino Flows that outputs were successfully created */

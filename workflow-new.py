@@ -6,10 +6,6 @@ from flytekit import workflow, task
 from flytekit.types.file import FlyteFile
 from enum import Enum
 
-class SDTMDataset(Enum):
-    BLIND = "/mnt/code/blind"
-    UNBLIND = "/mnt/code/unblind"
-
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
 project_name=os.environ.get('DOMINO_PROJECT_NAME')
@@ -60,6 +56,6 @@ adsl_job = DominoJobTask(
 
 # pyflyte run --remote workflow-new.py sas_workflow --sdtm_data_folder "/mnt/code/blind"
 @workflow
-def sas_workflow(sdtm_data_folder: SDTMDataset):
-    adsl = adsl_job(data_path="/mnt/code/blind")
+def sas_workflow(data_path: str):
+    adsl = adsl_job(data_path=data_path)
     return 
