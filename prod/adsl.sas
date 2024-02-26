@@ -11,6 +11,13 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
+data _null_;
+    infile "/workflow/inputs/data_path";
+    input file_contents;
+run;
+
+libname data "&file_contents";
+
 data outputs.adsl;
     set inputs.tv;
 run;
