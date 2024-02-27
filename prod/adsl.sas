@@ -23,6 +23,7 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 data outputs.adsl;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
+    call symputx('file_contents', file_contents,'G');
     set "&file_contents./tv.sas7bdat";
 run;
 
