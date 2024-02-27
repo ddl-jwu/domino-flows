@@ -10,18 +10,20 @@
 options dlcreatedir;
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
-%let path=;
-data _null_;
-    infile "/workflow/inputs/data_path";
-    input file_contents $char250.;
-	call symputx('path', file_contents,'G');
-run;
-
-%put The value of path is: &path;
-libname data "&path";
+/* %let path=; */
+/* data _null_; */
+/*     infile "/workflow/inputs/data_path"; */
+/*     input file_contents $char250.; */
+/* 	call symputx('path', file_contents,'G'); */
+/* run; */
+/*  */
+/* %put The value of path is: &path; */
+/* libname data "&path"; */
 
 data outputs.adsl;
-    set data.tv;
+    infile "/workflow/inputs/data_path";
+    input file_contents $char250.;
+    set "&file_contents./tv.sas7bdat";
 run;
 
 /* (Required) This line signals to Domino Flows that outputs were successfully created */
