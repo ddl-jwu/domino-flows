@@ -1,15 +1,18 @@
 import os
 from domino.flyte.task import DominoJobConfig, DominoJobTask
-from flytekit import workflow, task
-from flytekit.types.file import FlyteFile
-from flytekit.types.directory import FlyteDirectory
 
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
 project_name=os.environ.get('DOMINO_PROJECT_NAME')
 CommitId="43d7dd73a00f7ab5f2c114f1dae635d6bf48a80e" # DFS artifacts git commit
 
-def create_adam_data(name: str, command: str, environmentId: str, sdtm_dataset: str) -> FlyteFile:
+def define_job(
+    name: str, 
+    command: str, 
+    environmentId: str, 
+    inputs: dict = None,
+    outputs: dict = None
+) -> DominoJobTask:
 
     job_config = DominoJobConfig(
         OwnerName=owner_name,
@@ -17,18 +20,17 @@ def create_adam_data(name: str, command: str, environmentId: str, sdtm_dataset: 
         ApiKey=api_key,
         Command=command,
         EnvironmentId=environmentId,
-        CommitId=CommitId, # DFS commit
-        mainRepoGitRef=GitRef("head")  # Only relevant for git-based projects
+        CommitId=CommitId # DFS commit
     )
 
     job = DominoJobTask(
         f"Create {name} dataset",
         job_config,
-        inputs={"sdtm_dataset": str},
-        outputs={"adam": FlyteFile}
+        inputs=inputs,
+        outputs=outputs
     )
 
-    return job(sdtm_dataset=sdtm_dataset)
+    return job
 
 
 
