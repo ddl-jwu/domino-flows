@@ -1,13 +1,13 @@
 import os
 from domino.flyte.task import DominoJobConfig, DominoJobTask
 from flytekit import workflow, task
-from flytekit.types.file import FlyteFile, CSVFile
+from flytekit.types.file import FlyteFile
 from flytekit.types.directory import FlyteDirectory
 
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
 project_name=os.environ.get('DOMINO_PROJECT_NAME')
-CommitId="418feff0c0226f2b74af6edf64cbb574833d7fd5" # DFS artifacts git commit
+CommitId="43d7dd73a00f7ab5f2c114f1dae635d6bf48a80e" # DFS artifacts git commit
 
 def create_adam_data(name: str, command: str, environmentId: str, sdtm_dataset: str) -> FlyteFile:
 
@@ -17,7 +17,8 @@ def create_adam_data(name: str, command: str, environmentId: str, sdtm_dataset: 
         ApiKey=api_key,
         Command=command,
         EnvironmentId=environmentId,
-        CommitId=CommitId
+        CommitId=CommitId, # DFS commit
+        mainRepoGitRef=GitRef("head")  # Only relevant for git-based projects
     )
 
     job = DominoJobTask(
