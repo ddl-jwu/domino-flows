@@ -15,7 +15,7 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 data _null_;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
-	call symputx('path', file_contents);
+	call symputx('path', file_contents,'G');
 run;
 
 %put The value of path is: &path;
