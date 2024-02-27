@@ -4,6 +4,7 @@ from domino.flyte.task import DominoJobConfig, DominoJobTask
 from utils.jobs import run_job, define_job
 from flytekit import workflow, task
 from flytekit.types.file import FlyteFile
+from flytekit.types.directory import FlyteDirectory
 from enum import Enum
 
 api_key=os.environ.get('DOMINO_USER_API_KEY')
@@ -24,7 +25,7 @@ job_config = DominoJobConfig(
 job = DominoJobTask(
     "Dummy job",
     job_config,
-    inputs={"data_path": str}
+    inputs={"data_path": FlyteDirectory}
 )
 
 # Define the job for creating ADSL dataset
@@ -55,7 +56,12 @@ adsl_job = DominoJobTask(
 
 
 # pyflyte run --remote workflow-new.py sas_workflow --sdtm_data_folder "/mnt/code/blind"
+# @workflow
+# def sas_workflow(data_path: str):
+#     adsl = adsl_job(data_path=data_path)
+#     return 
+
 @workflow
-def sas_workflow(data_path: str):
-    adsl = adsl_job(data_path=data_path)
+def sas_workflow(data_path: FlyteDirectory):
+    job(data_path=data_path)
     return 
