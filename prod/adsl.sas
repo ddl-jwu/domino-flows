@@ -21,7 +21,7 @@ run; */
 
 libname dataset "/mnt/code/blind";
 
-data outputs.adsl;
+data outputs.adam;
     set dataset.tv;
 run;
 

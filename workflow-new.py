@@ -1,11 +1,10 @@
 
 import os
 from domino.flyte.task import DominoJobConfig, DominoJobTask
-from utils.jobs import run_job, define_job
+from utils.jobs import create_adam_data
 from flytekit import workflow, task
 from flytekit.types.file import FlyteFile
 from flytekit.types.directory import FlyteDirectory
-from enum import Enum
 
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
@@ -46,20 +45,11 @@ adsl_job = DominoJobTask(
 )
 
 
-# pyflyte run --remote workflow-new.py sas_workflow 
-# @workflow
-# def sas_workflow():
-#     job = define_job(name="Create ADSL dataset", command="prod/adsl.sas", environment_id="65cd54180df82f018c4fb7cf", inputs={"tv.sas7bdat": FlyteFile}, outputs={"adsl": FlyteFile})
-#     output = run_job(job, inputs={"tv.sas7bdat": "/mnt/code/data/tv.sas7bdat"})
-#     return 
-
-
-
-# pyflyte run --remote workflow-new.py sas_workflow --data_path "/mnt/code/blind"
+# pyflyte run --remote workflow-new.py sas_workflow --sdtm_dataset "/mnt/code/blind"
 @workflow
-def sas_workflow(data_path: str):
-    adsl = adsl_job(data_path=data_path)
-    return 
+def sas_workflow(sdtm_dataset: str) -> FlyteFile:
+    adsl = create_adam_data(name="ADSL", command="prod/adsl.sas", environmentId="65cd54180df82f018c4fb7cf", sdtm_dataset=sdtm_dataset)
+    return adsl
 
 # pyflyte run --remote workflow-new.py sas_workflow --data_path "/mnt/code/blind"
 # @workflow
