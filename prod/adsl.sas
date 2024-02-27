@@ -10,21 +10,19 @@
 options dlcreatedir;
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
-/* %let path=; */
-/* data _null_; */
-/*     infile "/workflow/inputs/data_path"; */
-/*     input file_contents $char250.; */
-/* 	call symputx('path', file_contents,'G'); */
-/* run; */
-/*  */
-/* %put The value of path is: &path; */
-/* libname data "&path"; */
-
-data outputs.adsl;
+/* data outputs.adsl;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
     call symputx('file_contents', file_contents,'G');
     set "&file_contents./tv.sas7bdat";
+run; */
+
+/* Above code for reading input not working right now, hardcoding the dataset root for now */
+
+libname dataset "/mnt/code/blind";
+
+data outputs.adsl;
+    set dataset.tv;
 run;
 
 /* (Required) This line signals to Domino Flows that outputs were successfully created */
