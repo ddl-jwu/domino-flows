@@ -15,14 +15,12 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 data _null_;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
-    %let path=&file_contents
+	call symputx('path', file_contents,'G');
 run;
 
-%put The value of path is: &path;
-
-libname data "&path";
-
 data outputs.adsl;
+    %put The value of path after is: &path;
+    libname data "&path";
     set data.tv;
 run;
 
