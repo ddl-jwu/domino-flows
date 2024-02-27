@@ -11,12 +11,14 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
+%let path=;
 data _null_;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
 	call symputx('path', file_contents);
-	put path;
 run;
+
+%put The value of path is: &path;
 
 libname data "&path";
 
