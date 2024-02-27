@@ -8,7 +8,6 @@
 %include "/mnt/code/domino.sas";
 
 options dlcreatedir;
-libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
 %let path=;
@@ -18,9 +17,10 @@ data _null_;
 	call symputx('path', file_contents,'G');
 run;
 
+%put The value of path is: &path;
+libname data "&path";
+
 data outputs.adsl;
-    %put The value of path after is: &path;
-    libname data "&path";
     set data.tv;
 run;
 
