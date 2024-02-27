@@ -13,7 +13,8 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 
 data _null_;
     infile "/workflow/inputs/data_path";
-    input file_contents;
+    input file_contents $char250.;
+    put file_contents;
 run;
 
 libname data "&file_contents.";
