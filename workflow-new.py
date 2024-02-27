@@ -55,13 +55,14 @@ adsl_job = DominoJobTask(
 
 
 
-# pyflyte run --remote workflow-new.py sas_workflow --sdtm_data_folder "/mnt/code/blind"
-# @workflow
-# def sas_workflow(data_path: str):
-#     adsl = adsl_job(data_path=data_path)
-#     return 
-
+# pyflyte run --remote workflow-new.py sas_workflow --data_path "/mnt/code/blind"
 @workflow
-def sas_workflow(data_path: FlyteDirectory):
-    job(data_path=data_path)
+def sas_workflow(data_path: str):
+    adsl = adsl_job(data_path=data_path)
     return 
+
+# pyflyte run --remote workflow-new.py sas_workflow --data_path "/mnt/code/blind"
+# @workflow
+# def sas_workflow(data_path: FlyteDirectory):
+#     job(data_path=data_path)
+#     return 

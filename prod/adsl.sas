@@ -11,13 +11,15 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
+%let path;
 data _null_;
     infile "/workflow/inputs/data_path";
     input file_contents $char250.;
-    call symputx('file_contents', file_contents);
+	call symputx('path', file_contents);
+	put path;
 run;
 
-libname data "&file_contents.";
+libname data "&path";
 
 data outputs.adsl;
     set data.tv;
