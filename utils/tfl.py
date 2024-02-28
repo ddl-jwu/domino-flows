@@ -1,6 +1,6 @@
 import os
 from .job import define_job
-from adam import ADAM
+from .adam import ADAM
 from typing import List
 from domino.flyte.task import DominoJobConfig, DominoJobTask
 from flytekit import workflow, task
@@ -18,13 +18,13 @@ def create_tfl_report(
     inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f"Create T_{name} report",
+        name=f"Generate {name} report",
         command=command, 
         environmentId=environmentId,
         inputs=inputs,
         outputs={"report": FlyteFile}
     )
-    
+
     output = job(**{f"{adam_dataset.filename}": adam_dataset.data})
 
     return output
