@@ -2,7 +2,7 @@ import os
 from flytekit import workflow
 from flytekit.types.file import FlyteFile
 from utils.adam import create_adam_data
-from util.adam import create_tfl_report
+from utils.adam import create_tfl_report
 
 # pyflyte run --remote workflow.py study_workflow --sdtm_data_path "/mnt/code/blind"
 @workflow
