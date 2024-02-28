@@ -4,7 +4,7 @@ from flytekit.types.file import FlyteFile
 from utils.adam import create_adam_data
 from utils.tfl import create_tfl_report
 
-# pyflyte run --remote workflow.py study_workflow --sdtm_data_path "/mnt/code/blind"
+# pyflyte run --remote workflow.py sce_workflow --sdtm_data_path "/mnt/code/blind"
 @workflow
 def sce_workflow(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
     """
