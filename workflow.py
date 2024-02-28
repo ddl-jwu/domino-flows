@@ -8,4 +8,5 @@ from utils.adam import create_adam_data
 @workflow
 def study_workflow(sdtm_data_path: str) -> FlyteFile:
     adsl = create_adam_data(name="ADSL", command="prod/adsl.sas", environmentId="65cd54180df82f018c4fb7cf", sdtm_data_path=sdtm_data_path)
-    return adsl.data
+    adae = create_adam_data(name="ADAE", command="prod/adae.sas", environmentId="65cd54180df82f018c4fb7cf", sdtm_data_path=sdtm_data_path, adam_dataset=adsl)
+    return adae.data

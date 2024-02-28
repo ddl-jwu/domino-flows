@@ -24,7 +24,7 @@ def define_job(
     )
 
     job = DominoJobTask(
-        f"Create {name} dataset",
+        name,
         job_config,
         inputs=inputs,
         outputs=outputs

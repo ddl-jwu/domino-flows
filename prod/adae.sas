@@ -11,8 +11,13 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
+/* Hardcoding the dataset root for now. 
+/* TODO: Take in the input string instead */
+
+libname dataset "/mnt/code/blind";
+
 data outputs.adae;
-    merge inputs.ts inputs.adsl;
+    merge dataset.ts inputs.adsl;
 run;
 
 /* (Required) This line signals to Domino Flows that outputs were successfully created */
