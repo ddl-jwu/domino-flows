@@ -4,11 +4,12 @@ from flytekit.types.file import FlyteFile
 from utils.adam import create_adam_data
 from utils.tfl import create_tfl_report
 
-# pyflyte run --remote workflow.py sce_workflow --sdtm_data_path "/mnt/code/blind"
 @workflow
 def sce_workflow(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
     """
-    This repo mocks a sample clinical trial, by taking in the directory to your SDTM data and eventually generating output TFL reports.
+    This workflow mocks a sample clinical trial, by taking in the directory to your SDTM data and eventually generating output TFL reports.
+
+    To the run the workflow remotely, execute: `pyflyte run --remote workflow.py sce_workflow --sdtm_data_path "/mnt/code/blind"`
 
     :param sdtm_data_path: The root directory of your SDTM dataset
     :return: A list of PDF files containing the TFL reports
