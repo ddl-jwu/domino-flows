@@ -22,10 +22,11 @@ def create_adam_data(
     inputs={"sdtm_data_path": str}
 
     if adam_dataset:
+        print(adam_dataset.filename)
         inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f"Create {name} dataset",
+        name=f"Create {name} dataset ",
         command=command, 
         environmentId=environmentId,
         inputs=inputs,
@@ -37,8 +38,7 @@ def create_adam_data(
     else:
         output = job(sdtm_data_path=sdtm_data_path)
 
-    return ADAM(filename=f"{name}.sas7bdat", data=output)
-
+    return ADAM(filename=f"{name}.sas7bdat".lower(), data=output)
 
 
  

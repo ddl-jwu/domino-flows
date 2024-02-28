@@ -16,7 +16,7 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 
 libname dataset "/mnt/code/blind";
 
-data outputs.adae;
+data outputs.adam;
     merge dataset.ts inputs.adsl;
 run;
 
