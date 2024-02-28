@@ -37,7 +37,7 @@ def create_adam_data(
     else:
         output = job(sdtm_data_path=sdtm_data_path)
 
-    return ADAM(filename=f"{name}.7bdat", data=output)
+    return ADAM(filename=f"{name}.sas7bdat", data=output)
 
 
 
