@@ -22,7 +22,6 @@ def create_adam_data(
     inputs={"sdtm_data_path": str}
 
     if adam_dataset:
-        print(adam_dataset.filename)
         inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
