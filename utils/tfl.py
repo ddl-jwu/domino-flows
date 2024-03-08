@@ -14,6 +14,16 @@ def create_tfl_report(
     adam_dataset: ADAM = None
 ) -> ADAM:
 
+    """
+    This method provides a standard interface for creating a TFL report 
+
+    :param name: The name in which to give the report. This is used to generate the step name.
+    :param command: The command to execute for generating the report
+    :param environmentId: The ID of the environment you want to you. 
+    :param sdtm_data_path: The process ADAM dataset in which to generate the report with
+    :return: A PDF files containing the final TFL report
+    """
+
     inputs = {}
     inputs[adam_dataset.filename] = FlyteFile
 
