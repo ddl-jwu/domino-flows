@@ -1,5 +1,6 @@
 import os
 from domino.flyte.task import DominoJobConfig, DominoJobTask, EnvironmentRevisionSpecification, EnvironmentRevisionType, GitRef
+from flytekit.loggers import logger
 
 api_key=os.environ.get('DOMINO_USER_API_KEY')
 owner_name=os.environ.get('DOMINO_USER_NAME')
@@ -21,7 +22,7 @@ def define_job(
         Command=command,
         EnvironmentId=environmentId,
         CommitId=CommitId, # DFS commit
-        MainRepoGitRef=GitRef("Head"),
+        MainRepoGitRef=GitRef(Type="head"),
         EnvironmentRevisionSpec=EnvironmentRevisionSpecification(
             EnvironmentRevisionType=EnvironmentRevisionType.SomeRevision,
             EnvironmentRevisionId="65cd542f0df82f018c4fb7d3",
