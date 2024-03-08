@@ -19,7 +19,7 @@ run; */
 
 /* Above code for reading input not working right now, hardcoding the dataset root for now */
 
-libname dataset "/mnt/data/blind";
+libname dataset "/mnt/data/stdm-blind";
 
 data outputs.adam;
     set dataset.tv;

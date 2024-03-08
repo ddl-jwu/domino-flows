@@ -14,7 +14,7 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory */
 /* Hardcoding the dataset root for now. 
 /* TODO: Take in the input string instead */
 
-libname dataset "/mnt/data/blind";
+libname dataset "/mnt/data/stdm-blind";
 
 data outputs.adam;
     merge dataset.ta inputs.adsl;
