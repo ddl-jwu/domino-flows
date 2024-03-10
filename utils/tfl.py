@@ -10,27 +10,27 @@ from flytekit.types.directory import FlyteDirectory
 def create_tfl_report(
     name: str, 
     command: str, 
-    environmentId: str, 
+    environment: str, 
+    hardware_tier: str = "small-k8s",
     adam_dataset: ADAM = None
-) -> ADAM:
-
+) -> FlyteFile:
     """
     This method provides a standard interface for creating a TFL report 
 
     :param name: The name in which to give the report. This is used to generate the step name.
     :param command: The command to execute for generating the report
     :param environmentId: The ID of the environment you want to you. 
-    :param sdtm_data_path: The process ADAM dataset in which to generate the report with
+    :param adam_dataset: The processed ADAM dataset to use for generating the report
     :return: A PDF files containing the final TFL report
     """
-
     inputs = {}
     inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
         name=f" Generate {name} report ",
         command=command, 
-        environmentId=environmentId,
+        environmentId=environment,
+        hardware_tier=hardware_tier,
         inputs=inputs,
         outputs={"report": FlyteFile}
     )

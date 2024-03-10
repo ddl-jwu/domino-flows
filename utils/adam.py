@@ -11,14 +11,25 @@ class ADAM:
         self.filename = filename
         self.data = data
 
+# TODO: Options to add: HWT
 def create_adam_data(
     name: str, 
     command: str, 
-    environmentId: str, 
+    environment: str, 
+    hardware_tier: str = "small-k8s",
     sdtm_data_path: str = None, 
     adam_dataset: ADAM = None
 ) -> ADAM:
+    """
+    This method provides a standard interface for creating an ADAM dataset 
 
+    :param name: The name in which to give the dataset. This is used to generate the step name.
+    :param command: The command to execute for generating the dataset
+    :param environmentId: The ID of the environment you want to you. 
+    :param sdtm_data_path: The root directory to the SDTM data
+    :param adam_dataset: Any processed ADAM dataset to use in the generation.
+    :return: An ADAM dataset
+    """
     inputs={"sdtm_data_path": str}
 
     if adam_dataset:
@@ -27,7 +38,8 @@ def create_adam_data(
     job = define_job(
         name=f" Create {name} dataset ",
         command=command, 
-        environmentId=environmentId,
+        environmentId=environment,
+        hardware_tier=hardware_tier,
         inputs=inputs,
         outputs={"adam": FlyteFile}
     )
