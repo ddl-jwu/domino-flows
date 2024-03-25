@@ -2,7 +2,7 @@ import os
 from .job import define_job
 from .adam import ADAM
 from typing import List
-from domino.flyte.task import DominoJobConfig, DominoJobTask
+from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask
 from flytekit import workflow, task
 from flytekit.types.file import FlyteFile
 from flytekit.types.directory import FlyteDirectory
@@ -27,7 +27,7 @@ def create_tfl_report(
     inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Generate {name} report ",
+        name=f" Generate {name}  report  ",
         command=command, 
         environmentId=environment,
         hardware_tier=hardware_tier,

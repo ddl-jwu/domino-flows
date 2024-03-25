@@ -1,7 +1,7 @@
 import os
 from .job import define_job
 from typing import List
-from domino.flyte.task import DominoJobConfig, DominoJobTask
+from flytekitplugins.domino.task import DominoJobConfig, DominoJobTask
 from flytekit import workflow, task
 from flytekit.types.file import FlyteFile
 from flytekit.types.directory import FlyteDirectory
@@ -36,7 +36,7 @@ def create_adam_data(
         inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Create {name} dataset ",
+        name=f" Create {name}  dataset  ",
         command=command, 
         environmentId=environment,
         hardware_tier=hardware_tier,
