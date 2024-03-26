@@ -8,7 +8,7 @@
 %include "/mnt/code/domino.sas";
 
 options dlcreatedir;
-libname outputs "/workflow/outputs"; /* All outputs must be written to this directory */ 
+libname outputs "/workflow/outputs/adam"; /* All outputs must be written to this directory */ 
 
 /* data outputs.adsl;
     infile "/workflow/inputs/data_path";
