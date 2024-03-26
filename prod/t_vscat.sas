@@ -4,15 +4,10 @@
 * For simplicity, we will simply print the input data onto a PDF file 
 *****************************************************************************/
 %include "/mnt/code/domino.sas";
+
 options dlcreatedir;
-libname inputs "/workflow/inputs";
-libname outputs "/workflow/outputs";
+libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
+libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
-ods pdf file="/workflow/outputs/report.pdf";
-title "T_VSCAT Report";
-
-/* proc report data=inputs.adae;  */
-/*     title 'T_AE_REL Report' tsparmcs=100; */
-/* run;  */
-
-ods pdf close;
+/* TODO: Reads the inputs and write the outputs properly. For now, we will just create an empty output file */
+libname report "/workflow/outputs/report";
