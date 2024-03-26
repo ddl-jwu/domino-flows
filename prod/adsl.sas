@@ -25,5 +25,3 @@ data outputs.adam;
     set dataset.tv;
 run;
 
-/* (Required) This line signals to Domino Flows that outputs were successfully created */
-libname success "/workflow/outputs/_SUCCESS";

@@ -16,5 +16,3 @@ title "T_VSCAT Report";
 /* run;  */
 
 ods pdf close;
-
-libname success "/workflow/outputs/_SUCCESS";

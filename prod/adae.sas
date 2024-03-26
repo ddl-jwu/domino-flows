@@ -19,6 +19,3 @@ data outputs.adam;
     merge dataset.ts inputs.adsl;
 run;
 
-/* (Required) This line signals to Domino Flows that outputs were successfully created */
-libname success "/workflow/outputs/_SUCCESS";
-

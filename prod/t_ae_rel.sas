@@ -16,5 +16,3 @@ title "T_AE_REL Report";
 /* run;  */
 
 ods pdf close;
-
-libname success "/workflow/outputs/_SUCCESS";
