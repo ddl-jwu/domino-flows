@@ -13,7 +13,7 @@ def sce_workflow(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
 
     To the run the workflow remotely, execute the following code in your terminal:
     
-    pyflyte run --remote workflow.py sce_workflow_test_2 --sdtm_data_path "/mnt/data/snapshots/sdtm-blind/1"
+    pyflyte run --remote workflow.py sce_workflow --sdtm_data_path "/mnt/data/snapshots/sdtm-blind/1"
 
     :param sdtm_data_path: The root directory of your SDTM dataset
     :return: A list of PDF files containing the TFL reports
