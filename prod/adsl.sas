@@ -14,7 +14,7 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory at
 /* Sleep for the specified number of seconds */
 data _null_;
     /* Call the SLEEP routine */
-    call sleep(200git 00,1);
+    call sleep(20000 00,1);
 run;
 
 
