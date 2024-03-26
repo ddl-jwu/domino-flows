@@ -13,5 +13,8 @@ libname dataset "/mnt/data/sdtm-blind";
 /* Outputs are written to /workflow/outputs/<OUTPUT NAME> */
 /* TODO: Write actual data to the output. For now, just creating an empty file */
 options dlcreatedir;
-libname adam "/workflow/outputs/adam"; 
+libname outputs "/workflow/outputs"; 
 
+data outputs.adam;
+    set dataset.tv;
+run;
