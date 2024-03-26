@@ -6,15 +6,17 @@
 *****************************************************************************/
 %include "/mnt/code/domino.sas";
 
-/* NOTE: Inputs are stored at /workflow/inputs/<NAME OF INPUT>. 
-/* TODO: Take in the actual input from /workflow/inputs/<NAME OF INPUT>. For now, just hardcoding the input */
-libname dataset "/mnt/data/sdtm-blind";
-
-/* Outputs are written to /workflow/outputs/<OUTPUT NAME> */
-/* TODO: Write actual data to the output. For now, just creating an empty file */
 options dlcreatedir;
-libname adam "/workflow/outputs/adam"; 
+libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
+libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
-data adam;
-    set dataset.tv;
-run;
+/* TODO: Read the inputs and write the outputs properly. For now, we will just create an empty output file */
+libname adam "/workflow/outputs/adam";
+
+
+/* Testing */
+
+/* libname dataset "/mnt/data/sdtm-blind"; */
+/* data adam; */
+/*     set dataset.tv; */
+/* run; */

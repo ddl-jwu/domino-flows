@@ -8,15 +8,10 @@
 %include "/mnt/code/domino.sas";
 
 options dlcreatedir;
-libname inputs "/workflow/inputs"; /* All inputs live in this directory */ 
-libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
+libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
+libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
-/* Hardcoding the dataset root for now. 
-/* TODO: Take in the actual input from instead /workflow/inputs/<NAME OF INPUT> instead */
-libname dataset "/mnt/data/sdtm-blind";
-
-data outputs.adam;
-    merge dataset.ta inputs.adsl;
-run;
+/* TODO: Reads the inputs and write the outputs properly. For now, we will just create an empty output file */
+libname adam "/workflow/outputs/adam";
 
 
