@@ -18,21 +18,14 @@ def sce_workflow_test_2(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
     :param sdtm_data_path: The root directory of your SDTM dataset
     :return: A list of PDF files containing the TFL reports
     """
+    # Create task that generates ADSL dataset. This will run a unique Domino job and return its outputs.
     adsl = create_adam_data(
-        name="Hello World", 
-        command="prod/hello.sas", 
+        name="ADSL", 
+        command="prod/adsl.sas", 
         environment="SAS Analytics Pro", # Optional parameter. If not set, then the default for the project will be used.
         hardware_tier= "small-k8s", # Optional parameter. If not set, then the default for the project will be used.
         sdtm_data_path=sdtm_data_path # Note this this is simply the input value taken in from the command line argument
     )
-    # Create task that generates ADSL dataset. This will run a unique Domino job and return its outputs.
-    # adsl = create_adam_data(
-    #     name="ADSL", 
-    #     command="prod/adsl.sas", 
-    #     environment="SAS Analytics Pro", # Optional parameter. If not set, then the default for the project will be used.
-    #     hardware_tier= "small-k8s", # Optional parameter. If not set, then the default for the project will be used.
-    #     sdtm_data_path=sdtm_data_path # Note this this is simply the input value taken in from the command line argument
-    # )
     # Create step that generates ADAE dataset. This takes the output from the previous task as an input.
     adae = create_adam_data(
         name="ADAE", 
