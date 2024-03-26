@@ -22,7 +22,7 @@ libname adam "/workflow/outputs/adam";
 /* run; */
 
 
-data _null_;
-    call sleep(200000,1);
-run;
+/* data _null_; */
+/*     call sleep(200000,1); */
+/* run; */
 
