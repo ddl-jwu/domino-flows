@@ -10,7 +10,7 @@ To run the flow, execute the following command in a workspace:
 pyflyte run --remote workflow.py sce_workflow --sdtm_data_path "/mnt/data/snapshots/sdtm-blind/1"
 ```
 
-If you want to change the input data, replace the `sdtm_data_path`` parameter with the location to your input data.
+If you want to change the input data, replace the `sdtm_data_path` parameter with the location to your input data.
 
 ## Flow Breakdown
 
@@ -20,7 +20,7 @@ Within the flow definition, there are two helper methods that are used for defin
 
 **create_adam_data()**
 
-This method provides a standardized interface for triggering a SAS script that to produces an ADAM dataset. 
+This method provides a standardized interface for triggering a SAS script that produces an ADAM dataset. 
 
 Here is a sample code snippet of how the method can be used:
 
@@ -58,7 +58,7 @@ Within the SAS script that gets executed by this method:
 
 **create_tfl_report**
 
-This method provides a standardized interface for triggering a SAS script that to produces aa TFL report. This method will utltimately trigger a Domino Job with the specified parameters and return the outputs that get produced by the job. 
+This method provides a standardized interface for triggering a SAS script that to produces aa TFL report. 
 
 Here is a sample code snippet of how the method can be used:
 
