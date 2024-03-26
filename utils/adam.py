@@ -15,8 +15,8 @@ class ADAM:
 def create_adam_data(
     name: str, 
     command: str, 
-    environment: str, 
-    hardware_tier: str = "small-k8s",
+    environment: str = "65cd54180df82f018c4fb7cf", # HARDCODING DEFAULT FOR NOW. NEED TO UPDATE THIS TO TAKE IN PROJECT DEFAULT 
+    hardware_tier: str = "small-k8s", # HARDCODING DEFAULT FOR NOW. NEED TO UPDATE THIS TO TAKE IN PROJECT DEFAULT
     sdtm_data_path: str = None, 
     adam_dataset: ADAM = None
 ) -> ADAM:
@@ -36,9 +36,9 @@ def create_adam_data(
         inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Create {name}  dataset  ",
+        name=f" Create {name}  dataset   ",
         command=command, 
-        environmentId=environment,
+        environment=environment,
         hardware_tier=hardware_tier,
         inputs=inputs,
         outputs={"adam": FlyteFile}

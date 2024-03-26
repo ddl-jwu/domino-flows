@@ -25,7 +25,7 @@ This method provides a standardized interface for triggering a SAS script that t
 Here is a sample code snippet of how the method can be used:
 
 ```
-# Create task that generates ADSL dataset. This will spawn a unique Domino job.
+# Create task that generates ADSL dataset. This will run a unique Domino job and return its outputs.
 adsl = create_adam_data(
     name="ADSL", 
     command="prod/adsl.sas", 
@@ -33,7 +33,7 @@ adsl = create_adam_data(
     hardware_tier= "small-k8s", 
     sdtm_data_path="/mnt/data/stdm-blind"
 )
-# Create task that generates ADAE dataset. This will spawn another Domino job.
+# Create task that generates ADAE dataset. This takes the output from the previous task as an input.
 adae = create_adam_data(
     name="ADAE", 
     command="prod/adae.sas", 

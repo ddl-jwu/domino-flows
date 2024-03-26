@@ -12,8 +12,7 @@ libname inputs "/workflow/inputs"; /* All inputs live in this directory */
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory */ 
 
 /* Hardcoding the dataset root for now. 
-/* TODO: Take in the input string instead */
-
+/* TODO: Take in the actual input from instead /workflow/inputs/<NAME OF INPUT> instead */
 libname dataset "/mnt/data/sdtm-blind";
 
 data outputs.adam;

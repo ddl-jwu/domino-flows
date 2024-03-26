@@ -10,8 +10,8 @@ from flytekit.types.directory import FlyteDirectory
 def create_tfl_report(
     name: str, 
     command: str, 
-    environment: str, 
-    hardware_tier: str = "small-k8s",
+    environment: str = "65cd54180df82f018c4fb7cf", # HARDCODING DEFAULT FOR NOW. NEED TO UPDATE THIS TO TAKE IN PROJECT DEFAULT 
+    hardware_tier: str = "small-k8s", # HARDCODING DEFAULT FOR NOW. NEED TO UPDATE THIS TO TAKE IN PROJECT DEFAULT
     adam_dataset: ADAM = None
 ) -> FlyteFile:
     """
@@ -27,9 +27,9 @@ def create_tfl_report(
     inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Generate {name}  report  ",
+        name=f" Generate {name}  report   ",
         command=command, 
-        environmentId=environment,
+        environment=environment,
         hardware_tier=hardware_tier,
         inputs=inputs,
         outputs={"report": FlyteFile}
