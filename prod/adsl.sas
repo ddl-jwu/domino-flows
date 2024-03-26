@@ -8,7 +8,7 @@
 %include "/mnt/code/domino.sas";
 
 options dlcreatedir;
-libname outputs "/workflow/outputs"; /* All outputs must be written to this directory */ 
+libname outputs "outputs"; /* All outputs must be written to this directory */ 
 
 /* data outputs.adsl;
     infile "/workflow/inputs/data_path";
@@ -21,7 +21,7 @@ run; */
 /* The above code for reading inputs are not working right now, hardcoding the dataset root for now */
 libname dataset "/mnt/data/sdtm-blind";
 
-/* data outputs.adam; */
-/*     set dataset.tv; */
-/* run; */
+data outputs.adam;
+    set dataset.tv;
+run;
 
