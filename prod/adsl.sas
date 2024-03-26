@@ -15,6 +15,6 @@ libname dataset "/mnt/data/sdtm-blind";
 /* Outputs are written to /workflow/outputs/adam*/
 libname adam "/workflow/outputs/adam"; /* All outputs must be written to this directory */ 
 
-data outputs.adam;
+data adam;
     set dataset.tv;
 run;
