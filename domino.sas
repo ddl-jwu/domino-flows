@@ -225,10 +225,10 @@ options
 * ==================================================================;
 * Redirect log files (BATCH MODE ONLY);
 * ==================================================================;
-/* %if &__runmode eq %str(BATCH) %then %do; */
-/*   * Redirect SAS LOG files when in batch mode; */
-/*   PROC PRINTTO LOG="&__results_path./&__prog_name..log" NEW; */
-/* %end; */
+%if &__runmode eq %str(BATCH) %then %do;
+  * Redirect SAS LOG files when in batch mode;
+  PROC PRINTTO LOG="&__results_path./&__prog_name..log" NEW;
+%end;
  
 %mend __setup;
 * invoke the setup macro - so user program only needs to include this file;

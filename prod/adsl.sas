@@ -21,7 +21,7 @@ run; */
 /* The above code for reading inputs are not working right now, hardcoding the dataset root for now */
 libname dataset "/mnt/data/sdtm-blind";
 
-data outputs.adam;
-    set dataset.tv;
-run;
+/* data outputs.adam; */
+/*     set dataset.tv; */
+/* run; */
 
