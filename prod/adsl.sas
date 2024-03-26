@@ -11,13 +11,10 @@ libname inputs "/workflow/inputs"; /* All inputs live in this directory at workf
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
 
-/* Define the length of time to sleep in seconds */
-%let sleep_seconds = 1000;
-
 /* Sleep for the specified number of seconds */
 data _null_;
     /* Call the SLEEP routine */
-    call sleep(&sleep_seconds);
+    call sleep(200,1);
 run;
 
 
