@@ -27,7 +27,7 @@ def create_tfl_report(
     inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Generate {name}  report   ",
+        name=f" Generate {name} report",
         command=command, 
         environment=environment,
         hardware_tier=hardware_tier,

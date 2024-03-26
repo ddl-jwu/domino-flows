@@ -36,7 +36,7 @@ def create_adam_data(
         inputs[adam_dataset.filename] = FlyteFile
 
     job = define_job(
-        name=f" Create {name}  dataset   ",
+        name=f" Create {name} dataset",
         command=command, 
         environment=environment,
         hardware_tier=hardware_tier,

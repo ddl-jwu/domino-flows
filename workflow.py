@@ -5,7 +5,7 @@ from utils.adam import create_adam_data
 from utils.tfl import create_tfl_report
 
 @workflow
-def sce_workflow_test_2(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
+def sce_workflow(sdtm_data_path: str) -> (FlyteFile, FlyteFile):
     """
     This script mocks a sample clinical trial using Domino Flows. 
 
