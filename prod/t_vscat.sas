@@ -9,5 +9,5 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
-/* TODO: Reads the inputs and write the outputs properly. For now, we will just create an empty output file */
+/* TODO: Read the inputs and write the outputs properly. For now, we will just create an empty output file */
 libname report "/workflow/outputs/report";

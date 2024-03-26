@@ -1,10 +1,9 @@
 /******************************************************************************
-* This scripts mocks the following use case:
-*  1. Loading in the original SDTM tv.sas7bdat data 
-*  2. Using that data to create the ADAM ADSL dataset
+* This is a dummy script that mocks the following use case:
+*  1. Loading in the original SDTM ts.sas7bdat data & a processed ADSL data
+*  2. Using that data to create the ADCM dataset
 * 
-*  For simplicity, we are going to just return the same dataset back
-*  and assume some data processing happened.
+*  For simplcity, we will simply merging the datasets together
 *****************************************************************************/
 %include "/mnt/code/domino.sas";
 
@@ -15,7 +14,8 @@ libname outputs "/workflow/outputs"; /* All outputs must go to this directory at
 /* HITTING A BUG WITH READING IN THE INPUT STRING PROPERLY. HARDCODING THE DATASET PATH FOR NOW */
 libname dataset "/mnt/data/snapshots/sdtm-blind/1";
 
-libname outputs "/workflow/outputs";
 data outputs.adam;
-    set dataset.tv;
+    merge dataset.ts inputs.adsl;
 run;
+
+

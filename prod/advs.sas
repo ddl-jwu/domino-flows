@@ -11,6 +11,7 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
+/* HITTING A BUG WITH READING IN THE INPUT STRING PROPERLY. HARDCODING THE DATASET PATH FOR NOW */
 libname dataset "/mnt/data/snapshots/sdtm-blind/1";
 
 data outputs.adam;
