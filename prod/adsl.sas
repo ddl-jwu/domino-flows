@@ -17,18 +17,3 @@ libname outputs "/workflow/outputs";
 data outputs.adam;
     set dataset.tv;
 run;
-
-
-/* Testing */
-
-/* data _null_; */
-/*     call sleep(200000,1); */
-/* run; */
-
-/* %include "/mnt/code/domino.sas"; */
-/* options dlcreatedir; */
-/* libname dataset "/mnt/data/sdtm-blind"; */
-/* libname adam "/workflow/outputs/adam"; */
-/* data adam; */
-/*     set dataset.tv; */
-/* run; */

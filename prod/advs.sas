@@ -11,7 +11,9 @@ options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
 libname outputs "/workflow/outputs"; /* All outputs must go to this directory at workflow/inputs/<NAME OF OUTPUT>y */ 
 
-/* TODO: Reads the inputs and write the outputs properly. For now, we will just create an empty output file */
-libname adam "/workflow/outputs/adam";
+libname dataset "/mnt/data/snapshots/sdtm-blind/1";
 
+data outputs.adam;
+    merge dataset.ta inputs.adsl;
+run;
 
