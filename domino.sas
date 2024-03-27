@@ -59,12 +59,6 @@
 
 * globals read in from env vars; 
 %global __WORKING_DIR  ; * path to root of working directory ;
-/* %global __PROJECT_NAME ; * project name <PROTOCOL>_<TYPE> ; */
-/* %global __DCUTDTC      ; * cutoff date in ISO8901 format ; */
- 
-* globals derived from env vars;
-/* %global __PROTOCOL;      * Protocol identifier e.g H2QMCLZZT;  */
-/* %global __PROJECT_TYPE ; * project type: SDTM | ADAM | TFL ; */
  
 * other globals exported by setup;
 %global __prog_path;     * full path to the program being run;
@@ -78,23 +72,6 @@
 * grab the environment varaibles that we need to create pathnames;
 * ==================================================================;
 %let __WORKING_DIR  = %sysget(DOMINO_WORKING_DIR);
-/* %let __PROJECT_NAME = %sysget(DOMINO_PROJECT_NAME); */
-/* %let __DCUTDTC      = %sysget(DCUTDTC); */
-* runtime check that e.g. DCUTDTC is not missing;
-/* %if &__DCUTDTC. eq %str() %then %put %str(ER)ROR: Envoronment Variable DCUTDTC not set; */
- 
-* ==================================================================;
-* extract the protocol and project type from the project name;
-* ==================================================================;
-/* %if %sysfunc(find(&__PROJECT_NAME.,_)) ge 1 %then %do; */
-/*   %* found an underscrore, so assume project name is <PROTOCOL>_<TYPE> ; */
-/*   %let __PROTOCOL     = %scan(&__PROJECT_NAME.,1,'_'); */
-/*   %* project type is everything after the protocol in the project name ; */
-/*   %let __PROJECT_TYPE = %sysfunc(tranwrd(&__PROJECT_NAME.,&__PROTOCOL._, %str())); */
-/*   %end; */
-/* %else %do; */
-/*   %put %str(ER)ROR: Project Name (DOMINO_PROJECT_NAME) ill-formed. Expecting <PROTOCOL>_<TYPE> ; */
-/* %end; */
  
 * ==================================================================;
 * work out if the project is git or domino based
@@ -105,17 +82,9 @@
   * set  directory  where outputs (TFL) are written to;
   %let __results_path=/mnt/artifacts/results;
 %end; %else %do;
-/*   %let __localdata_path = /domino/datasets/local; */
-/*   %let __sharedata_path = /domino/datasets; */
-  * Imported code repository location;
-/*   %let __imported_git_path = /repos; */
   * set  directory  where outputs (TFL) are written to;
   %let __results_path=&__WORKING_DIR./results;
 %end;
-
-* ==================================================================;
-* define library locations - these are dependent on the project type;
-* ==================================================================;
  
 * ==================================================================;
 * Determine if we are running Interactive or Batch ;
@@ -161,9 +130,6 @@
  
 %* isolate filename as everything up to but not including the period. ;
 %let __prog_name = %scan(&filename, 1, .);
- 
-%* everything after the period is the extension. ;
-/* %let __prog_ext = %scan(&filename, 2, .); */
  
 * ==================================================================;
 * Redirect log files (BATCH MODE ONLY);

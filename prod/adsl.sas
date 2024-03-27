@@ -6,7 +6,7 @@
 *  For simplicity, we are going to just return the same dataset back
 *  and assume some data processing happened.
 *****************************************************************************/
-%include "/mnt/code/domino.sas";
+/* %include "/mnt/code/domino.sas"; */
 
 options dlcreatedir;
 libname inputs "/workflow/inputs"; /* All inputs live in this directory at workflow/inputs/<NAME OF INPUT> */ 
