@@ -60,11 +60,11 @@
  
 * Location of Domino Datasets folders that are defined in this project;
 * Dependent on whether project is DFS or Git hosted;
-%global __localdata_path;
+/* %global __localdata_path; */
 * Location of mounted shared Domino Datasets;
-%global __sharedata_path;
+/* %global __sharedata_path; */
 * Location of imported code repositories;
-%global __imported_git_path;
+/* %global __imported_git_path; */
 
 * globals read in from env vars; 
 %global __WORKING_DIR  ; * path to root of working directory ;
@@ -112,17 +112,17 @@
 %let __is_git_project = %sysget(DOMINO_IS_GIT_BASED);
 %if %upcase(&__is_git_project) eq %str(TRUE) %then %do;
   * local & imported dataset location;
-  %let __localdata_path = /mnt/data;
-  %let __sharedata_path = /mnt/imported/data;
+/*   %let __localdata_path = /mnt/data; */
+/*   %let __sharedata_path = /mnt/imported/data; */
   * imported code location;
-  %let __imported_git_path = /mnt/imported/code;
+/*   %let __imported_git_path = /mnt/imported/code; */
   * set  directory  where outputs (TFL) are written to;
   %let __results_path=/mnt/artifacts/results;
 %end; %else %do;
-  %let __localdata_path = /domino/datasets/local;
-  %let __sharedata_path = /domino/datasets;
+/*   %let __localdata_path = /domino/datasets/local; */
+/*   %let __sharedata_path = /domino/datasets; */
   * Imported code repository location;
-  %let __imported_git_path = /repos;
+/*   %let __imported_git_path = /repos; */
   * set  directory  where outputs (TFL) are written to;
   %let __results_path=&__WORKING_DIR./results;
 %end;
@@ -133,46 +133,46 @@
  
 * SDTM ;
 * ------------------------------------------------------------------;
-%if %sysfunc(find(%upcase(&__PROJECT_TYPE.),SDTM)) ge 1 %then %do;
-  * Local read/write access to SDTM and QC folders ;
-  libname SDTMUNBD   "&__localdata_path./SDTMUNBLIND";
-  libname SDTMBLND "&__localdata_path./SDTMBLIND";
-  * Imported SDTM projects; 
-  libname RAW "&__sharedata_path./RAW" access=readonly;
-  libname UNBLIND "&__sharedata_path./UNBLIND" access=readonly;
-  libname BLIND "&__sharedata_path./BLIND" access=readonly;
-  * Metadata;
-  libname METADATA "&__localdata_path./METADATA";
-%end;
-
+/* %if %sysfunc(find(%upcase(&__PROJECT_TYPE.),SDTM)) ge 1 %then %do; */
+/*   * Local read/write access to SDTM and QC folders ; */
+/*   libname SDTMUNBD   "&__localdata_path./SDTMUNBLIND"; */
+/*   libname SDTMBLND "&__localdata_path./SDTMBLIND"; */
+/*   * Imported SDTM projects;  */
+/*   libname RAW "&__sharedata_path./RAW" access=readonly; */
+/*   libname UNBLIND "&__sharedata_path./UNBLIND" access=readonly; */
+/*   libname BLIND "&__sharedata_path./BLIND" access=readonly; */
+/*   * Metadata; */
+/*   libname METADATA "&__localdata_path./METADATA"; */
+/* %end; */
+/*  */
 * Reporting Effort (RE) project ;
 * ------------------------------------------------------------------;
-%if %sysfunc(find(%upcase(&__PROJECT_TYPE.),RE)) ge 1 %then %do;
-  * imported read-only SDTM data, using the data cutoff date.. ;
-  * .. and sdtm variable to identify the correct snapshot to use ;
-  %let __SDTM_DATASET = %sysget(SDTM_DATASET);
-  %if &__SDTM_DATASET. eq %str() %then %put %str(ER)ROR: Environment Variable SDTM_DATASET not set;
-  libname SDTM "/mnt/imported/data/snapshots/&__SDTM_DATASET./&__DCUTDTC." access=readonly;
-  * local read/write acces to ADaM and QC folders;
-  libname ADAM   "&__localdata_path./ADAM";
-  libname ADAMQC "&__localdata_path./ADAMQC";
-  * local read/write for TFL datasets ;
-  libname TFL   "&__localdata_path./TFL";
-  libname TFLQC "&__localdata_path./TFLQC";
-  * Metadata;
-  libname METADATA "&__localdata_path./METADATA";
-%end;
+/* %if %sysfunc(find(%upcase(&__PROJECT_TYPE.),RE)) ge 1 %then %do; */
+/*   * imported read-only SDTM data, using the data cutoff date.. ; */
+/*   * .. and sdtm variable to identify the correct snapshot to use ; */
+/*   %let __SDTM_DATASET = %sysget(SDTM_DATASET); */
+/*   %if &__SDTM_DATASET. eq %str() %then %put %str(ER)ROR: Environment Variable SDTM_DATASET not set; */
+/*   libname SDTM "/mnt/imported/data/snapshots/&__SDTM_DATASET./&__DCUTDTC." access=readonly; */
+/*   * local read/write acces to ADaM and QC folders; */
+/*   libname ADAM   "&__localdata_path./ADAM"; */
+/*   libname ADAMQC "&__localdata_path./ADAMQC"; */
+/*   * local read/write for TFL datasets ; */
+/*   libname TFL   "&__localdata_path./TFL"; */
+/*   libname TFLQC "&__localdata_path./TFLQC"; */
+/*   * Metadata; */
+/*   libname METADATA "&__localdata_path./METADATA"; */
+/* %end; */
  
 * ==================================================================;
 * Set SASAUTOS to search for shared macros ;
 * ==================================================================;
-options
-  MAUTOSOURCE
-  MAUTOLOCDISPLAY 
-  sasautos=(
-    "&__WORKING_DIR./share/macros"
-    ,"&__imported_git_path./SCE_STANDARD_LIB/macros"
-    ,SASAUTOS) ;
+/* options */
+/*   MAUTOSOURCE */
+/*   MAUTOLOCDISPLAY  */
+/*   sasautos=( */
+/*     "&__WORKING_DIR./share/macros" */
+/*     ,"&__imported_git_path./SCE_STANDARD_LIB/macros" */
+/*     ,SASAUTOS) ; */
  
 * ==================================================================;
 * Determine if we are running Interactive or Batch ;
@@ -243,7 +243,7 @@ options
 %put TRACE: (domino.sas) [__DCUTDTC = &__DCUTDTC.];
 %put TRACE: (domino.sas) [__PROTOCOL = &__PROTOCOL.];
 %put TRACE: (domino.sas) [__PROJECT_TYPE = &__PROJECT_TYPE.];
-%put TRACE: (domino.sas) [__localdata_path = &__localdata_path.];
+/* %put TRACE: (domino.sas) [__localdata_path = &__localdata_path.]; */
 %put TRACE: (domino.sas) [__prog_path = &__prog_path.];
 %put TRACE: (domino.sas) [__prog_name = &__prog_name.];
 %put TRACE: (domino.sas) [__prog_ext = &__prog_ext.];
